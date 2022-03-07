@@ -1,38 +1,35 @@
-import * as React from "react"
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+import { ChakraProvider, Box, theme } from "@chakra-ui/react";
+import { useState } from "react";
+import Appbar from "./components/Appbar";
+import PreGameSettings from "./components/PreGameSettings";
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
-  </ChakraProvider>
-)
+import CreationPhase from "./components/CreationPhase";
+import EvolutionPhase from "./components/EvolutionPhase";
+import DestructionPhase from "./components/DestructionPhase";
+
+const phases = ["pre-game", "creation", "evolution", "destruction"];
+
+export const App = () => {
+  const [phase, setPhase] = useState(phases[0]);
+  const onNextPhase = () =>
+    setPhase(phases[phases.findIndex((e) => e === phase) + 1]);
+  const onReset = () => setPhase(phases[0]);
+
+  return (
+    <ChakraProvider theme={theme}>
+      <Box height="100vh" width="100vw">
+        <Appbar phase={phase} />
+        <Box
+          maxWidth="40rem"
+          margin="auto"
+          height={phase === phases[0] ? "90%" : "100%"}
+        >
+          {phase === phases[0] && <PreGameSettings onNextPhase={onNextPhase} />}
+          {phase === phases[1] && <CreationPhase onNextPhase={onNextPhase} />}
+          {phase === phases[2] && <EvolutionPhase onNextPhase={onNextPhase} />}
+          {phase === phases[3] && <DestructionPhase onNextPhase={onReset} />}
+        </Box>
+      </Box>
+    </ChakraProvider>
+  );
+};
