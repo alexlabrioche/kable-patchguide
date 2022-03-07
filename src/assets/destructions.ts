@@ -7,7 +7,7 @@ import { GameOptions } from "../components/PreGameSettings";
 
 const base = [
   {
-    title: "For each module patched COINFLIP if heads, unpatch",
+    title: "COINFLIP For each module patched flip a coin if heads, unpatch",
     Icon: ImClock,
   },
   {

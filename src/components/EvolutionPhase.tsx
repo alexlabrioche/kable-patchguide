@@ -15,6 +15,7 @@ import { GameOptions } from "./PreGameSettings";
 import { MdStop, MdSkipNext } from "react-icons/md";
 import { parseRule } from "../utils/rules-parser";
 import RuleCard from "./RuleCard";
+import Coinflip from "./Coinflip";
 
 interface IProps {
   onNextPhase: MouseEventHandler;
@@ -51,8 +52,9 @@ export default function EvolutionPhase({ onNextPhase }: IProps) {
       <Text fontWeight="bold" mb={8} textAlign="center">
         It's time to evolve
       </Text>
-      <Flex flex={1} justify="center" align="center">
+      <Flex flex={1} direction="column" justify="center" align="center">
         <RuleCard rule={rule} />
+        {rule.hasCoinflip && <Coinflip />}
       </Flex>
       <Flex width="full" gap={4} justify="center">
         <IconButton

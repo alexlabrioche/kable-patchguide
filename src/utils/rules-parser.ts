@@ -94,5 +94,10 @@ export function parseRule(
   { title, ...rest }: any,
   options: GameOptions | null
 ) {
-  return { title: parser(title, options), ...rest };
+  let rule = { title: parser(title, options), ...rest };
+  if (rule.title.includes("COINFLIP")) {
+    rule.hasCoinflip = true;
+    rule = { ...rule, title: rule.title.replace("COINFLIP", "") };
+  }
+  return rule;
 }

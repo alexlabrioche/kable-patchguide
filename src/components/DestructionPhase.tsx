@@ -1,4 +1,4 @@
-import { Flex, Button, Text } from "@chakra-ui/react";
+import { Flex, Button, Text, Box } from "@chakra-ui/react";
 import { MouseEventHandler, useMemo, useState } from "react";
 import { getDestructions } from "../assets";
 import useReadLocalStorage from "../hooks/useReadLocalStorage";
@@ -6,6 +6,7 @@ import { shuffleArray } from "../utils/random";
 import { GameOptions } from "./PreGameSettings";
 import { parseRule } from "../utils/rules-parser";
 import RuleCard from "./RuleCard";
+import Coinflip from "./Coinflip";
 
 interface IProps {
   onNextPhase: MouseEventHandler;
@@ -31,8 +32,7 @@ export default function DestructionPhase({ onNextPhase }: IProps) {
         End your patch with these rules
       </Text>
       <Flex flex={1} direction="column" justify="center" align="center">
-        <RuleCard rule={rules[activeIndex]} mb="4" />
-        <Flex gap={2}>
+        <Flex gap={2} mb={2}>
           {rules.map((_, i) => (
             <Button
               colorScheme={activeIndex === i ? "pink" : undefined}
@@ -42,6 +42,10 @@ export default function DestructionPhase({ onNextPhase }: IProps) {
             </Button>
           ))}
         </Flex>
+        <RuleCard rule={rules[activeIndex]} />
+        <Box h={16} w="full">
+          {rules[activeIndex].hasCoinflip && <Coinflip />}
+        </Box>
       </Flex>
       <div>
         <Button width="full" colorScheme="green" onClick={onNextPhase}>
