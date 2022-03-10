@@ -2,7 +2,7 @@
   "name": "patchlife",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://alexlabrioche.github.io",
+  "homepage": "https://alexlabrioche.github.io/oppalach-patchguide",
   "dependencies": {
     "@chakra-ui/react": "^1.8.6",
     "@emotion/react": "^11.0.0",
