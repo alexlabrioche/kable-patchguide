@@ -4,7 +4,7 @@ import { RiCoinLine } from "react-icons/ri";
 import { BiLoader } from "react-icons/bi";
 import useInterval from "../hooks/useInterval";
 
-const doCoinflip = () => Math.floor(Math.random() * 2) === 0;
+export const doCoinflip = () => Math.floor(Math.random() * 2) === 0;
 
 export default function Coinflip() {
   const [isFlipin, setIsFlipin] = useState(false);
@@ -15,7 +15,7 @@ export default function Coinflip() {
     setIsHeads(doCoinflip());
   };
 
-  useInterval(() => setIsFlipin(false), 2000);
+  useInterval(() => setIsFlipin(false), 1000);
 
   return (
     <Flex justifyContent="space-around" alignItems="center" w="full" mt="2">
@@ -24,13 +24,13 @@ export default function Coinflip() {
         aria-label="coinflip"
         icon={
           isFlipin ? (
-            <Icon as={BiLoader} h={8} w={8} />
+            <Icon as={BiLoader} h={10} w={10} />
           ) : (
             <Icon
               as={RiCoinLine}
               transform={`rotate(${isHeads ? "0deg" : "180deg"})`}
-              h={8}
-              w={8}
+              h={10}
+              w={10}
             />
           )
         }

@@ -1,105 +1,84 @@
 import { ImClock } from "react-icons/im";
-import { GameOptions } from "../components/PreGameSettings";
+import {
+  FaVolumeMute,
+  FaVolumeOff,
+  FaVolumeDown,
+  FaDoorClosed,
+  FaHandPointer,
+} from "react-icons/fa";
+import { RiFileUnknowFill, RiDislikeFill } from "react-icons/ri";
+import { TiWaves } from "react-icons/ti";
+import { GiRopeCoil } from "react-icons/gi";
 
-const base = [
+export const base = [
   {
     title: "Do not listen",
-    Icon: ImClock,
-    type: "creation",
+    Icon: FaVolumeMute,
   },
   {
     title: "Start with your least favorite module",
-    Icon: ImClock,
-    type: "creation",
+    Icon: RiDislikeFill,
   },
   {
     title: "Start with your least known module",
-    Icon: ImClock,
-    type: "creation",
+    Icon: RiFileUnknowFill,
   },
   {
     title: "Triggers are your audio source",
-    Icon: ImClock,
-    type: "creation",
+    Icon: FaVolumeOff,
   },
   {
     title: "Use audio as your clock",
     Icon: ImClock,
-    type: "creation",
   },
   {
     title: "Use LFO(s) as sequencer",
-    Icon: ImClock,
-    type: "creation",
+    Icon: TiWaves,
   },
   {
     title: "Use modules n°: __DICEROLL_TOTALMODULE_DIV3__",
-    Icon: ImClock,
-    type: "creation",
+    Icon: FaHandPointer,
   },
   {
     title: "Use modules n°: __DICEROLL_TOTALMODULE_DIV4__",
-    Icon: ImClock,
-    type: "creation",
+    Icon: FaHandPointer,
   },
   {
     title: "Use only gates as modulation",
-    Icon: ImClock,
-    type: "creation",
+    Icon: FaDoorClosed,
   },
   {
     title: "Use no attenuation",
-    Icon: ImClock,
-    type: "creation",
+    Icon: FaVolumeDown,
   },
   {
     title: "Use exactly __TOTALMODULE__ cables",
-    Icon: ImClock,
-    type: "creation",
+    Icon: GiRopeCoil,
   },
 ];
 
-const hemisphere = [
-  {
-    title: "Start with only Hemisphere Apps and a sound source",
-    Icon: ImClock,
-    type: "creation",
-  },
+export const hemisphere = [
   {
     title: "Start with your least favorite Hemisphere App",
-    Icon: ImClock,
-    type: "creation",
+    Icon: RiDislikeFill,
   },
   {
     title: "Start with your least known Hemisphere App",
+    Icon: RiFileUnknowFill,
+  },
+  {
+    title: "Start with __OC_HEMISPHERE_RANDOM_APP__ Hemisphere App",
     Icon: ImClock,
-    type: "creation",
   },
 ];
 
-const stock = [
+export const stock = [
   {
     title: "Start with your least favorite O_C Stock App",
-    Icon: ImClock,
-    type: "creation",
+    Icon: RiDislikeFill,
   },
   {
     title: "Start with your least known O_C Stock App",
-    Icon: ImClock,
-    type: "creation",
+    Icon: RiFileUnknowFill,
   },
 ];
-
-export const getCreations = (options: GameOptions | null) => {
-  let creations = base;
-  if (!options) {
-    return creations;
-  }
-  if (options.ocHemisphere) {
-    creations = [...creations, ...hemisphere];
-  }
-  if (options.ocStock) {
-    creations = [...creations, ...stock];
-  }
-  return creations;
-};

@@ -1,3 +1,4 @@
+import { ocHemisphere, ocStock } from "../assets/o_c";
 import { GameOptions } from "../components/PreGameSettings";
 import { getRandomInt, shuffleArray } from "./random";
 
@@ -82,7 +83,20 @@ const parser = (rule: string, options: GameOptions | null) => {
           String(getRandomInt(5, 15))
         );
         break;
-
+      case "OC_HEMISPHERE_RANDOM_APP":
+        parsed = updateRule(
+          "OC_HEMISPHERE_RANDOM_APP",
+          parsed,
+          ocHemisphere[getRandomInt(0, ocHemisphere.length)]
+        );
+        break;
+      case "OC_STOCK_RANDOM_APP":
+        parsed = updateRule(
+          "OC_STOCK_RANDOM_APP",
+          parsed,
+          ocStock[getRandomInt(0, ocStock.length)]
+        );
+        break;
       default:
         break;
     }

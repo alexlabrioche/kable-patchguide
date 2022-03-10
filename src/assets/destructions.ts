@@ -3,9 +3,8 @@ import { MdUnfoldLess } from "react-icons/md";
 import { AiOutlineDisconnect } from "react-icons/ai";
 import { VscDebugDisconnect } from "react-icons/vsc";
 import { BiBorderAll } from "react-icons/bi";
-import { GameOptions } from "../components/PreGameSettings";
 
-const base = [
+export const base = [
   {
     title: "COINFLIP For each module patched flip a coin if heads, unpatch",
     Icon: ImClock,
@@ -54,30 +53,9 @@ const base = [
   },
 ];
 
-const hemisphere = [
+export const hemisphere = [
   {
-    title: "Choose a patch Hemisphere, unpatch it",
+    title: "Choose a patched Hemisphere, unpatch it",
     Icon: ImClock,
   },
 ];
-
-const stock = [
-  {
-    title: "Unpatch half of a O_C Stock app",
-    Icon: ImClock,
-  },
-];
-
-export const getDestructions = (options: GameOptions | null) => {
-  let destructions = base;
-  if (!options) {
-    return destructions.map((e) => ({ ...e, type: "destruction" }));
-  }
-  if (options.ocHemisphere) {
-    destructions = [...destructions, ...hemisphere];
-  }
-  if (options.ocStock) {
-    destructions = [...destructions, ...stock];
-  }
-  return destructions.map((e) => ({ ...e, type: "destruction" }));
-};

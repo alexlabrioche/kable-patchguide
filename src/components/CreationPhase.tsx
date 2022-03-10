@@ -1,11 +1,11 @@
-import { Flex, Text, Button } from "@chakra-ui/react";
+import { Flex, Button } from "@chakra-ui/react";
 import { MouseEventHandler, useMemo } from "react";
-import { getCreations } from "../assets";
 import useReadLocalStorage from "../hooks/useReadLocalStorage";
-import { shuffleArray } from "../utils/random";
+import { createShuffleCreations } from "../utils/create-rulesets";
 import { parseRule } from "../utils/rules-parser";
 import { GameOptions } from "./PreGameSettings";
 import RuleCard from "./RuleCard";
+import Appbar from "./Appbar";
 
 interface IProps {
   onNextPhase: MouseEventHandler;
@@ -13,16 +13,16 @@ interface IProps {
 
 export default function CreationPhase({ onNextPhase }: IProps) {
   const gameOptions: GameOptions | null = useReadLocalStorage("game-options");
-  const creations = useMemo(() => getCreations(gameOptions), [gameOptions]);
-  const [r1, r2] = shuffleArray(creations);
+  const [r1, r2] = useMemo(
+    () => createShuffleCreations(gameOptions),
+    [gameOptions]
+  );
   const rule1 = parseRule(r1, gameOptions);
   const rule2 = parseRule(r2, gameOptions);
 
   return (
     <Flex direction="column" height="full" p={4}>
-      <Text fontWeight="bold" mb={8} textAlign="center">
-        All thing must start somewhere
-      </Text>
+      <Appbar phase="creation" />
       <Flex
         flex={1}
         direction="column"

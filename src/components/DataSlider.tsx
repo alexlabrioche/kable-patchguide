@@ -29,7 +29,7 @@ export default function DataSlider({
   const onChange = (val: number) => setValue(val);
   return (
     <Box mb={mb}>
-      <Text fontSize={"lg"} fontWeight="bold" mb="8">
+      <Text fontSize="lg" mb="8">
         {label}
       </Text>
       <Box px={4}>

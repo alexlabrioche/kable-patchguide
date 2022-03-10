@@ -1,13 +1,21 @@
-import { ChakraProvider, Box, theme } from "@chakra-ui/react";
+import { ChakraProvider, Box, extendTheme } from "@chakra-ui/react";
 import { useState } from "react";
-import Appbar from "./components/Appbar";
-import PreGameSettings from "./components/PreGameSettings";
 
+import PreGameSettings from "./components/PreGameSettings";
 import CreationPhase from "./components/CreationPhase";
 import EvolutionPhase from "./components/EvolutionPhase";
 import DestructionPhase from "./components/DestructionPhase";
 
+import "./global.css";
+
 const phases = ["pre-game", "creation", "evolution", "destruction"];
+
+const theme = extendTheme({
+  fonts: {
+    heading: "Fira Code, monospace",
+    body: "Fira Code, monospace",
+  },
+});
 
 export const App = () => {
   const [phase, setPhase] = useState(phases[0]);
@@ -18,12 +26,7 @@ export const App = () => {
   return (
     <ChakraProvider theme={theme}>
       <Box height="100vh" width="100vw">
-        <Appbar phase={phase} />
-        <Box
-          maxWidth="40rem"
-          margin="auto"
-          height={phase === phases[0] ? "90%" : "100%"}
-        >
+        <Box maxWidth="40rem" margin="auto" height="full">
           {phase === phases[0] && <PreGameSettings onNextPhase={onNextPhase} />}
           {phase === phases[1] && <CreationPhase onNextPhase={onNextPhase} />}
           {phase === phases[2] && <EvolutionPhase onNextPhase={onNextPhase} />}

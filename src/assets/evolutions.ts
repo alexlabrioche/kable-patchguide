@@ -4,15 +4,14 @@ import { BiVolumeLow, BiBorderInner, BiPlug } from "react-icons/bi";
 import { RiCoinLine } from "react-icons/ri";
 import { FiCopy } from "react-icons/fi";
 import { CgEditNoise } from "react-icons/cg";
-import { GameOptions } from "../components/PreGameSettings";
 
-const base = [
+export const base = [
   {
     title: "self-patch a chosen module",
     Icon: BiBorderInner,
   },
   {
-    title: "For each VCO, flip a coin if heads, change frequency",
+    title: "COINFLIP For each VCO, flip a coin if heads, change frequency",
     Icon: RiCoinLine,
   },
   {
@@ -47,11 +46,7 @@ const base = [
   },
 ];
 
-const hemisphere = [
-  {
-    title: "Self patch 2 Hemisphere apps",
-    Icon: ImClock,
-  },
+export const hemisphere = [
   {
     title: "On Hemisphere, go down by __RANDOMCOUNT_5-15__ apps and patch it",
     Icon: ImClock,
@@ -61,28 +56,3 @@ const hemisphere = [
     Icon: ImClock,
   },
 ];
-
-const stock = [
-  {
-    title: "on O_C Stock, go down by __RANDOMCOUNT_2-5__ apps and patch it",
-    Icon: ImClock,
-  },
-  {
-    title: "on O_C Stock, go up by __RANDOMCOUNT_2-5__ apps and patch it",
-    Icon: ImClock,
-  },
-];
-
-export const getEvolutions = (options: GameOptions | null) => {
-  let evolutions = base;
-  if (!options) {
-    return evolutions.map((e) => ({ ...e, type: "evolution" }));
-  }
-  if (options.ocHemisphere) {
-    evolutions = [...evolutions, ...hemisphere];
-  }
-  if (options.ocStock) {
-    evolutions = [...evolutions, ...stock];
-  }
-  return evolutions.map((e) => ({ ...e, type: "evolution" }));
-};

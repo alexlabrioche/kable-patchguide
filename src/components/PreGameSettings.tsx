@@ -2,6 +2,7 @@ import { Flex, Button, Checkbox, CheckboxGroup, Stack } from "@chakra-ui/react";
 import DataSlider from "./DataSlider";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { ChangeEvent, MouseEventHandler } from "react";
+import Appbar from "./Appbar";
 
 interface IProps {
   onNextPhase: MouseEventHandler;
@@ -41,8 +42,10 @@ export default function PreGameSettings({ onNextPhase }: IProps) {
 
   return (
     <Flex flex={1} direction="column" height="full" margin="auto" p="4">
+      <Appbar phase="pre-game" />
+      <Flex flex={1} />
       <DataSlider
-        label="Timer (in minutes)"
+        label="Timer"
         value={gameOptions.timer}
         setValue={setSliderValue("timer")}
         min={1}
@@ -58,12 +61,6 @@ export default function PreGameSettings({ onNextPhase }: IProps) {
       />
       <CheckboxGroup colorScheme="green" size="lg">
         <Stack mt={8} spacing={[1, 5]} direction={["column", "row"]}>
-          <Checkbox
-            onChange={onCheckboxChange("vcv")}
-            isChecked={gameOptions.vcv}
-          >
-            VCV Rack
-          </Checkbox>
           <Checkbox
             onChange={onCheckboxChange("ocStock")}
             isChecked={gameOptions.ocStock}

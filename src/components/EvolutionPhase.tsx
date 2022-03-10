@@ -5,56 +5,63 @@ import {
   Slider,
   SliderTrack,
   SliderFilledTrack,
+  Box,
 } from "@chakra-ui/react";
-import { MouseEventHandler, useMemo, useState } from "react";
-import { getDestructions, getEvolutions } from "../assets";
+import { useMemo, useState } from "react";
 import useCountdown from "../hooks/useCountdown";
 import useReadLocalStorage from "../hooks/useReadLocalStorage";
-import { getRandomInt } from "../utils/random";
 import { GameOptions } from "./PreGameSettings";
 import { MdStop, MdSkipNext } from "react-icons/md";
-import { parseRule } from "../utils/rules-parser";
 import RuleCard from "./RuleCard";
 import Coinflip from "./Coinflip";
+import {
+  createShuffleDestructions,
+  createShuffleEvolutions,
+} from "../utils/create-rulesets";
+import Appbar from "./Appbar";
 
 interface IProps {
-  onNextPhase: MouseEventHandler;
+  onNextPhase: any;
 }
 
 const parseSeconds = (secs: number) => (secs < 10 ? `0${secs}` : secs);
 
+const createRules = (gameOptions: GameOptions | null) => {
+  const evolutions = createShuffleEvolutions(gameOptions).slice(0, 7);
+  const destructions = createShuffleDestructions(gameOptions).slice(0, 3);
+  return [...evolutions, ...destructions];
+};
+
 export default function EvolutionPhase({ onNextPhase }: IProps) {
   const gameOptions: GameOptions | null = useReadLocalStorage("game-options");
-  const evolutions = useMemo(() => getEvolutions(gameOptions), [gameOptions]);
-  const destructions = useMemo(
-    () => getDestructions(gameOptions),
-    [gameOptions]
-  );
+  const rules = useMemo(() => createRules(gameOptions), [gameOptions]);
+  console.log({ rules });
   const [now, setNow] = useState(new Date().getTime());
-  const [rule, setRule] = useState(
-    parseRule(evolutions[getRandomInt(0, evolutions.length)], gameOptions)
-  );
+  const [index, setIndex] = useState(0);
+  const rule = rules[index];
   const intervalMs = gameOptions ? gameOptions.timer * 60 * 1000 : 60000;
   const { minutes, seconds, countdown } = useCountdown(now + intervalMs);
 
   const setNewRule = () => {
-    setNow(new Date().getTime());
-    const randomInt = getRandomInt(0, 10);
-    let rules: any = evolutions;
-    if (randomInt > +7) {
-      rules = destructions;
+    if (index === rules.length - 1) {
+      onNextPhase();
+      return;
     }
-    setRule(parseRule(rules[getRandomInt(0, rules.length)], gameOptions));
+    setNow(new Date().getTime());
+    setIndex(index + 1);
   };
 
   return (
     <Flex p={4} height="full" direction="column">
-      <Text fontWeight="bold" mb={8} textAlign="center">
-        It's time to evolve
-      </Text>
+      <Appbar phase="evolution" />
       <Flex flex={1} direction="column" justify="center" align="center">
+        <Text fontWeight="bold" mb={2} fontSize="sm">
+          {index + 1}/{rules.length}
+        </Text>
         <RuleCard rule={rule} />
-        {rule.hasCoinflip && <Coinflip />}
+        <Box h={16} w="full">
+          {rule.hasCoinflip && <Coinflip />}
+        </Box>
       </Flex>
       <Flex width="full" gap={4} justify="center">
         <IconButton
