@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.55b50414.css",
-    "main.js": "/static/js/main.13bac3e4.js",
-    "static/js/377.effbd7c6.chunk.js": "/static/js/377.effbd7c6.chunk.js",
-    "index.html": "/index.html",
-    "main.13bac3e4.js.map": "/static/js/main.13bac3e4.js.map",
-    "377.effbd7c6.chunk.js.map": "/static/js/377.effbd7c6.chunk.js.map"
+    "main.css": "/oppalach-patchguide/static/css/main.55b50414.css",
+    "main.js": "/oppalach-patchguide/static/js/main.18013c0f.js",
+    "static/js/377.effbd7c6.chunk.js": "/oppalach-patchguide/static/js/377.effbd7c6.chunk.js",
+    "index.html": "/oppalach-patchguide/index.html",
+    "main.18013c0f.js.map": "/oppalach-patchguide/static/js/main.18013c0f.js.map",
+    "377.effbd7c6.chunk.js.map": "/oppalach-patchguide/static/js/377.effbd7c6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.55b50414.css",
-    "static/js/main.13bac3e4.js"
+    "static/js/main.18013c0f.js"
   ]
 }
