@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/oppalach-patchguide/static/css/main.55b50414.css",
-    "main.js": "/oppalach-patchguide/static/js/main.18013c0f.js",
-    "static/js/377.effbd7c6.chunk.js": "/oppalach-patchguide/static/js/377.effbd7c6.chunk.js",
-    "index.html": "/oppalach-patchguide/index.html",
-    "main.18013c0f.js.map": "/oppalach-patchguide/static/js/main.18013c0f.js.map",
-    "377.effbd7c6.chunk.js.map": "/oppalach-patchguide/static/js/377.effbd7c6.chunk.js.map"
+    "main.css": "/kable-patchguide/static/css/main.55b50414.css",
+    "main.js": "/kable-patchguide/static/js/main.6faf7c3f.js",
+    "static/js/377.473b937f.chunk.js": "/kable-patchguide/static/js/377.473b937f.chunk.js",
+    "index.html": "/kable-patchguide/index.html",
+    "main.6faf7c3f.js.map": "/kable-patchguide/static/js/main.6faf7c3f.js.map",
+    "377.473b937f.chunk.js.map": "/kable-patchguide/static/js/377.473b937f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.55b50414.css",
-    "static/js/main.18013c0f.js"
+    "static/js/main.6faf7c3f.js"
   ]
 }
