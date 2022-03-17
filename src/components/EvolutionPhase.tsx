@@ -19,6 +19,7 @@ import {
   createShuffleEvolutions,
 } from "../utils/create-rulesets";
 import Appbar from "./Appbar";
+import { shuffleArray } from "../utils/random";
 
 interface IProps {
   onNextPhase: any;
@@ -29,13 +30,13 @@ const parseSeconds = (secs: number) => (secs < 10 ? `0${secs}` : secs);
 const createRules = (gameOptions: GameOptions | null) => {
   const evolutions = createShuffleEvolutions(gameOptions).slice(0, 7);
   const destructions = createShuffleDestructions(gameOptions).slice(0, 3);
-  return [...evolutions, ...destructions];
+  return shuffleArray([...evolutions, ...destructions]);
 };
 
 export default function EvolutionPhase({ onNextPhase }: IProps) {
   const gameOptions: GameOptions | null = useReadLocalStorage("game-options");
   const rules = useMemo(() => createRules(gameOptions), [gameOptions]);
-  console.log({ rules });
+
   const [now, setNow] = useState(new Date().getTime());
   const [index, setIndex] = useState(0);
   const rule = rules[index];

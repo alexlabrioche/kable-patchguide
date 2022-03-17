@@ -1,8 +1,8 @@
 {
-  "name": "patchlife",
+  "name": "kable",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://alexlabrioche.github.io/oppalach-patchguide",
+  "homepage": "https://alexlabrioche.github.io/kable-patchguide",
   "dependencies": {
     "@chakra-ui/react": "^1.8.6",
     "@emotion/react": "^11.0.0",

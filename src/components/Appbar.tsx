@@ -11,8 +11,8 @@ import {
 } from "@chakra-ui/react";
 import { FaQuestion } from "react-icons/fa";
 import { CgClose } from "react-icons/cg";
-
-import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import ColorModeSwitcher from "./ColorModeSwitcher";
+import MoreOptionsMenu from "./MoreOptionsMenu";
 interface IProps {
   phase: string;
 }
@@ -22,7 +22,7 @@ const switchPhaseHelp = (phase: string) => {
     default:
     case "pre-game":
       return {
-        title: "oppalach...",
+        title: "kablé",
         content: "",
       };
     case "creation":
@@ -56,7 +56,10 @@ export default function HelpDrawer({ phase }: IProps) {
           {title}
         </Text>
         {isPreGame ? (
-          <ColorModeSwitcher />
+          <Flex>
+            <ColorModeSwitcher />
+            <MoreOptionsMenu />
+          </Flex>
         ) : (
           <IconButton
             variant="ghost"
@@ -80,6 +83,7 @@ export default function HelpDrawer({ phase }: IProps) {
             Help
             <IconButton
               icon={<CgClose />}
+              variant="ghost"
               aria-label="close"
               onClick={onClose}
             />

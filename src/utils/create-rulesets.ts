@@ -8,7 +8,7 @@ import { parseRule } from "./rules-parser";
 
 export const createShuffleCreations = (options: GameOptions | null) => {
   if (!options) {
-    return creationsAssets.base;
+    return shuffleArray(creationsAssets.base);
   }
 
   let oc: Array<object> = [];
@@ -41,7 +41,7 @@ export const createShuffleCreations = (options: GameOptions | null) => {
 
 export const createShuffleEvolutions = (options: GameOptions | null) => {
   if (!options) {
-    return evolutionsAssets.base;
+    return shuffleArray(evolutionsAssets.base);
   }
 
   let oc: Array<object> = [];
@@ -91,7 +91,7 @@ export const createShuffleEvolutions = (options: GameOptions | null) => {
 
 export const createShuffleDestructions = (options: GameOptions | null) => {
   if (!options) {
-    return destructionsAssets.base;
+    return shuffleArray(destructionsAssets.base);
   }
 
   let oc: Array<object> = [];
